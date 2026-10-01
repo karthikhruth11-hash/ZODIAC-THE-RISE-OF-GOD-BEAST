@@ -1,0 +1,33 @@
+// Copyright (c) 2026 ZODIAC: Rise of the God Beast. Custom Subsurface Skin & Cybernetic Rune HLSL Shader
+
+#pragma once
+
+// Calculates Subsurface Scattering for South Asian skin tone with realistic specular highlights
+float3 CalculateKaelenSkinSubsurface(
+    float3 BaseColor,
+    float3 SubsurfaceColor,
+    float Opacity,
+    float3 Normal,
+    float3 LightVector,
+    float3 ViewVector)
+{
+    float NdotL = max(0.0, dot(Normal, LightVector));
+    float WrapNdotL = max(0.0, (dot(Normal, LightVector) + 0.5) / 1.5);
+    
+    // Subsurface scattering diffuse bleed
+    float3 SubsurfaceLighting = SubsurfaceColor * WrapNdotL * (1.0 - Opacity);
+    
+    // Specular highlight on cornea & skin pores
+    float3 HalfVector = normalize(LightVector + ViewVector);
+    float NdotH = max(0.0, dot(Normal, HalfVector));
+    float SpecularPower = pow(NdotH, 64.0) * 0.45;
+    
+    return (BaseColor * NdotL) + SubsurfaceLighting + float3(SpecularPower, SpecularPower, SpecularPower);
+}
+
+// Calculates Cybernetic Arm Emissive Cyan Pulse Animation
+float3 CalculateCyberneticRunePulse(float3 EmissiveColor, float Time, float PulseSpeed)
+{
+    float GlowFactor = 0.5 + 0.5 * sin(Time * PulseSpeed);
+    return EmissiveColor * (1.5 + GlowFactor * 2.0);
+}

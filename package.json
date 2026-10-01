@@ -1,0 +1,12 @@
+{
+  "name": "zodiac-rise-of-the-god-beast",
+  "version": "1.0.0",
+  "description": "Server-authoritative dedicated game server for ZODIAC",
+  "main": "server/dedicated_server.js",
+  "scripts": {
+    "start": "node server/dedicated_server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

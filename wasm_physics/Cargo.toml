@@ -1,0 +1,18 @@
+# ==============================================================================
+# ZODIAC: RISE OF THE GOD BEAST — RUST WASM PHYSICS CARGO MANIFEST
+# Language: TOML
+# ==============================================================================
+
+[package]
+name = "zodiac_wasm_physics"
+version = "1.0.0"
+authors = ["Antigravity AGY Studio <engineers@zodiac-game.com>"]
+edition = "2021"
+description = "High-performance Rust WebAssembly physics & 3D raycasting engine for ZODIAC"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+cfg-if = "0.1.10"
