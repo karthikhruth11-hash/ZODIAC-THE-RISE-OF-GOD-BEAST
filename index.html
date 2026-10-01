@@ -1224,9 +1224,15 @@
     }
 
     if (document.readyState === 'loading') {
-      window.addEventListener('DOMContentLoaded', init3DEngine);
+      window.addEventListener('DOMContentLoaded', () => {
+        init3DEngine();
+        enterGameMode();
+      });
     } else {
-      setTimeout(init3DEngine, 10);
+      setTimeout(() => {
+        init3DEngine();
+        enterGameMode();
+      }, 10);
     }
   </script>
   <script src="js/network-client.js"></script>
